@@ -1,0 +1,12 @@
+import XLSX
+
+xf = XLSX.readxlsx("C:\\Users\\jaime.valenzuela\\Desktop\\Curvas\\Prototipos\\Data\\20190823_icap_camara_clp.xlsx")
+XLSX.sheetnames(xf)
+datosXF = xf["datos"]
+df = XLSX.readdata("C:\\Users\\jaime.valenzuela\\Documents\\Julia_Scripts\\BoostrappingPrototype\\bidaskCamaraBBG.xlsx","datos","A1:D19")
+#C:\Users\jaime.valenzuela\Documents\Julia_Scripts\BoostrappingPrototype
+#bidaskCamaraBBG.xlsx
+
+dataCurveDef = convert(DataFrame,XLSX.readdata("C:\\Users\\jaime.valenzuela\\Documents\\Julia_Scripts\\BoostrappingPrototype\\curveDef.xlsx","clpCamara","A2:B100"))
+dataCurveDef = dataCurveDef[completecases(dataCurveDef),:] #Eliminar missing values
+names!(dataCurveDef,[:Tenor,:mktDesc]) #poner nombre

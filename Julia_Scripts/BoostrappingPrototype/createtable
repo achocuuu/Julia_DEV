@@ -1,0 +1,19 @@
+
+--select * from curveDef where curveName = 'CLPCAMARA'
+
+--select  * from curveId
+
+CREATE TABLE curveInfo (
+    id_curve           INT           NOT NULL,
+    name               VARCHAR (255) NOT NULL,
+    payFreq            VARCHAR (255) NOT NULL,
+    settlement         INT           NOT NULL,
+    dayCountConvention VARCHAR (255) NOT NULL,
+    fwdCurve           VARCHAR (255) NOT NULL,
+    dsctCurve          VARCHAR (255) NOT NULL,
+    PRIMARY KEY (
+        id_curve
+    )
+    
+
+);

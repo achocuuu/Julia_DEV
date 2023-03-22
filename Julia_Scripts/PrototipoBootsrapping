@@ -1,0 +1,18 @@
+
+import XLSX
+
+xf = XLSX.readxlsx("C:\\Users\\jaime.valenzuela\\Desktop\\Curvas\\Prototipos\\Data\\20190823_icap_camara_clp.xlsx")
+
+XLSX.sheetnames(xf)
+
+datosXF = xf["datos"]
+
+df = XLSX.readdata("C:\\Users\\jaime.valenzuela\\Desktop\\Curvas\\Prototipos\\Data\\20190823_icap_camara_clp.xlsx","datos","A1:D18")
+
+t = [0,1,2,3]
+
+r12 = 0.012
+r23 = 0.023
+monto = 100
+
+flujo = monto * (1 + r12 * (t[2]-t[1]))*(1+r23*(t[3]-t[2]))

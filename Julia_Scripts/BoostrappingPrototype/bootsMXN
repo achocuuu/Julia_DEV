@@ -1,0 +1,27 @@
+import ODBC
+import DataFrames
+import Query
+import DataFramesMeta
+Pkg.add("DataFramesMeta")
+#Pkg.add("ODBC")
+#Pkg.add("MySQL")
+#Pkg.add("Query")
+
+dnsConn = "VMTDBDEVELO_conn"
+sqlString = "declare @fecha datetime = '20200131'
+declare @udi float = (select PrecioLimpio from Valmer.Vector where Emisora = 'MXPUDI' and serie = 'UDI' and fecha = @fecha)
+
+select fecha, Instrumento, TipoValor, 'psucio_MO' = preciosucio, 'psucio' = PrecioSucio/@udi, DiasVenc, 'yield'=Rendimiento/100, plazo, TasaCupon, case when TasaCupon = 0 then 'Cero Cupon' else 'Bullet' end as tipo
+from valmer.Vector 
+where Emisora = 'UDIBONO' and fecha = @fecha and TipoValor in ('SC','sp','S')
+order by DiasVenc"
+
+conn = ODBC.DSN(dnsConn)
+
+df = ODBC.query(conn,sqlString)
+
+names(df)
+
+@linq df
+    where(:TipoValor == "SP")
+    select (:Instrumento)

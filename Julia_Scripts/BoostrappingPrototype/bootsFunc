@@ -1,0 +1,9 @@
+
+
+function discountFactor(rate, m, n, tipo)
+
+if tipo == "Linear"
+else if
+end
+
+end
